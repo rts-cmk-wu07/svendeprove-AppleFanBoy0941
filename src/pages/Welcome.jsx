@@ -1,7 +1,20 @@
+import { motion } from 'framer-motion'
+import Button from '../components/buttons/Button'
+import { useNavigate } from 'react-router-dom'
+import useSessionStorage from '../hooks/useSessionStorage'
+
 export default function Welcome() {
+	const navigate = useNavigate()
+	const [showWelcome, setShowWelcome] = useSessionStorage('welcome')
+
+	function handleGetStarted() {
+		setShowWelcome(true)
+		navigate(0)
+	}
+
 	return (
 		<div
-			className='relative bg-[url("./splash-image.jpg")] bg-cover h-screen w-screen'
+			className='relative bg-[url("./splash-image.jpg")] bg-cover h-screen w-screen flex flex-col items-center'
 			style={{ backgroundPosition: 'center' }}
 		>
 			<div className='absolute left-0 top-1/2 flex flex-col gap-2'>
@@ -15,6 +28,9 @@ export default function Welcome() {
 				</h1>
 				<div className=' w-full h-3 bg-[#913693] shadow-[0_4px_4px_#00000040]' />
 			</div>
+			<motion.div className='fixed bottom-14'>
+				<Button onClick={handleGetStarted}>Kom i gang</Button>
+			</motion.div>
 		</div>
 	)
 }

@@ -18,7 +18,7 @@ import TeamOverview from './pages/TeamOverview'
 
 function App() {
 	const [authCookie, setAuthCookie] = useCookie('auth')
-	const [showWelcome, setShowWelcome] = useSessionStorage('auth')
+	const [showWelcome, setShowWelcome] = useSessionStorage('welcome')
 
 	function showWelcomeScreen() {
 		if (authCookie || showWelcome) return false
