@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
-import { AuthContext } from '../context/AuthContext'
+import { AuthContext } from '../contexts/AuthProvider'
 import refreshToken from '../utils/refreshToken'
 
 export default function useAxios(endpoint, noToken, fullUrl = false) {
@@ -13,7 +13,11 @@ export default function useAxios(endpoint, noToken, fullUrl = false) {
 	const { token } = auth
 
 	useEffect(() => {
-		if (!token || !noToken || !endpoint) {
+		if (!token && !noToken) {
+			setLoading(false)
+			return
+		}
+		if (!endpoint) {
 			setLoading(false)
 			return
 		}
@@ -40,7 +44,11 @@ export default function useAxios(endpoint, noToken, fullUrl = false) {
 	}, [endpoint, noToken, setData])
 
 	async function getData(additionalEndpoint = '') {
-		if (!token || !noToken || !endpoint) {
+		if (!token && !noToken) {
+			setLoading(false)
+			return
+		}
+		if (!endpoint) {
 			setLoading(false)
 			return
 		}
@@ -69,7 +77,11 @@ export default function useAxios(endpoint, noToken, fullUrl = false) {
 	}
 
 	async function postData(data, additionalEndpoint = '') {
-		if (!token || !noToken || !endpoint) {
+		if (!token && !noToken) {
+			setLoading(false)
+			return
+		}
+		if (!endpoint) {
 			setLoading(false)
 			return
 		}
@@ -99,7 +111,11 @@ export default function useAxios(endpoint, noToken, fullUrl = false) {
 	}
 
 	async function patchData(data, additionalEndpoint = '') {
-		if (!token || !noToken || !endpoint) {
+		if (!token && !noToken) {
+			setLoading(false)
+			return
+		}
+		if (!endpoint) {
 			setLoading(false)
 			return
 		}
@@ -129,7 +145,7 @@ export default function useAxios(endpoint, noToken, fullUrl = false) {
 	}
 
 	async function deleteData(additionalEndpoint = '') {
-		if (!token || !noToken || !endpoint) {
+		if (!token || !endpoint) {
 			setLoading(false)
 			return
 		}
