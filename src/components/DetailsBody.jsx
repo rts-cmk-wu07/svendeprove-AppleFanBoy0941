@@ -5,10 +5,10 @@ export default function DetailsBody({ activity }) {
 			<header>
 				<h1 className='text-xl font-bold'>{activity?.name}</h1>
 				<p>
-					{activity.minAge}-{activity.maxAge} år
+					{activity?.minAge}-{activity?.maxAge} år
 				</p>
 			</header>
-			<p>{activity.description}</p>
+			<p>{activity?.description}</p>
 		</div>
 	)
 }
