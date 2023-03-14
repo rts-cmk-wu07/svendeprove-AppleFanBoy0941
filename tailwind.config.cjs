@@ -14,6 +14,9 @@ module.exports = {
 				primary: '#E1A1E9',
 				text: '#000000',
 			},
+			fontSize: {
+				xl: '24px',
+			},
 		},
 	},
 	plugins: [

@@ -1,4 +1,8 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import {
+	createBrowserRouter,
+	RouterProvider,
+	ScrollRestoration,
+} from 'react-router-dom'
 import useCookie from 'react-use-cookie'
 import useSessionStorage from './hooks/useSessionStorage'
 
