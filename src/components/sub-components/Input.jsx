@@ -12,7 +12,9 @@ export default function Input({ search, errorMessage, ...props }) {
 				}  border-2 border-transparent focus:border-primary transition pr-3`}
 			>
 				<input
-					className={`flex-grow py-3 pl-5 pr-2 bg-transparent placeholder:text-[#999999] focus:outline-none`}
+					className={`flex-grow py-3 pl-5 pr-2 bg-transparent placeholder:text-[#999999] focus:outline-none ${
+						search ? 'text-elevated' : 'text-text'
+					}`}
 					{...props}
 				/>
 				{search && <Search className='flex-shrink-0 text-elevated' />}
