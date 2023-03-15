@@ -20,6 +20,7 @@ import Search from './pages/Search'
 import AuthProvider from './contexts/AuthProvider'
 import TeamOverview from './pages/TeamOverview'
 import { AnimatePresence, motion } from 'framer-motion'
+import NotFound from './pages/NotFound'
 
 function App() {
 	const [authCookie] = useCookie('auth')
@@ -69,6 +70,10 @@ function App() {
 				{
 					path: '/calendar/team/:id',
 					element: <TeamOverview />,
+				},
+				{
+					path: '*',
+					element: <NotFound />,
 				},
 			],
 		},
