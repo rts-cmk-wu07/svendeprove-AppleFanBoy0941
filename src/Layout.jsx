@@ -1,12 +1,12 @@
 import { Outlet, useLocation, ScrollRestoration } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import Navigation from './templates/Navigation'
 
 export default function Layout() {
 	const { pathname } = useLocation()
 
 	return (
 		<div>
-			{/* Navigation komponent her */}
 			<motion.div
 				key={pathname}
 				initial={{ opacity: 0, y: 128 }}
@@ -20,6 +20,7 @@ export default function Layout() {
 				<Outlet />
 			</motion.div>
 			<ScrollRestoration />
+			<Navigation />
 		</div>
 	)
 }
