@@ -19,9 +19,10 @@ import Search from './pages/Search'
 // Import Contexts
 import AuthProvider from './contexts/AuthProvider'
 import TeamOverview from './pages/TeamOverview'
+import { AnimatePresence, motion } from 'framer-motion'
 
 function App() {
-	const [authCookie, setAuthCookie] = useCookie('auth')
+	const [authCookie] = useCookie('auth')
 	const [showWelcome, setShowWelcome] = useSessionStorage('welcome')
 
 	function showWelcomeScreen() {
@@ -31,7 +32,23 @@ function App() {
 
 	const router = createBrowserRouter([
 		{
-			element: showWelcomeScreen() ? <Welcome /> : <Layout />,
+			element: (
+				<AnimatePresence mode='wait'>
+					{showWelcomeScreen() ? (
+						<motion.div
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1, filter: 'blur(0rem)' }}
+							exit={{ opacity: 0, filter: 'blur(1rem)' }}
+						>
+							<Welcome setWelcome={setShowWelcome} />
+						</motion.div>
+					) : (
+						<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+							<Layout />
+						</motion.div>
+					)}
+				</AnimatePresence>
+			),
 			children: [
 				{
 					path: '/',

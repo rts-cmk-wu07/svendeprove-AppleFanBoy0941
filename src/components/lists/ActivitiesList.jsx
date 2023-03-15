@@ -2,6 +2,7 @@ import useAxios from '../../hooks/useAxios'
 import ActivityCard from './ActivityCard'
 import { motion } from 'framer-motion'
 import { animatedList, animatedListItem } from '../../utils/motion'
+import RotatingLoader from '../loaders/RotatingLoader'
 
 export default function ActivitiesList() {
 	const { data, loading, error } = useAxios('activities', true)
@@ -14,7 +15,11 @@ export default function ActivitiesList() {
 			exit='exit'
 			className='flex flex-col gap-8'
 		>
-			{loading && <p>Loading...</p>}
+			{loading && (
+				<div className='flex justify-center pt-16'>
+					<RotatingLoader />
+				</div>
+			)}
 			{error && <p>Error: {error}</p>}
 			{data &&
 				data?.map(activity => (

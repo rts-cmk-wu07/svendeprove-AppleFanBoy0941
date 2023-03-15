@@ -1,5 +1,4 @@
 export default function DetailsBody({ activity }) {
-	console.log(activity)
 	return (
 		<div className='flex-grow flex-shrink-0 h-2/5 pt-4 px-6 pb-12 text-elevated gap-2 flex flex-col overflow-y-auto'>
 			<header>

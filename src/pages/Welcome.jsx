@@ -1,16 +1,25 @@
 import { motion } from 'framer-motion'
 import Button from '../components/buttons/Button'
-import { useNavigate } from 'react-router-dom'
-import useSessionStorage from '../hooks/useSessionStorage'
+import { useNavigate, useLocation } from 'react-router-dom'
+import { useEffectOnce } from 'react-use'
 
-export default function Welcome() {
+export default function Welcome({ setWelcome }) {
 	const navigate = useNavigate()
-	const [showWelcome, setShowWelcome] = useSessionStorage('welcome')
+	const { pathname } = useLocation()
 
 	function handleGetStarted() {
-		setShowWelcome(true)
-		navigate(0)
+		setWelcome(true)
 	}
+
+	useEffectOnce(() => {
+		if (pathname !== '/') {
+			navigate('/')
+
+			setTimeout(() => {
+				navigate(0)
+			}, 0)
+		}
+	})
 
 	return (
 		<div
@@ -28,7 +37,25 @@ export default function Welcome() {
 				</h1>
 				<div className=' w-full h-3 bg-[#913693] shadow-[0_4px_4px_#00000040]' />
 			</div>
-			<motion.div className='fixed bottom-14'>
+			<motion.div
+				initial={{ y: 'calc(100% + 3.5rem)', opacity: 0 }}
+				animate={{
+					y: 0,
+					opacity: 1,
+					transition: {
+						type: 'spring',
+						stiffness: 500,
+						damping: 50,
+						opacity: {
+							delay: 1,
+							duration: 0.5,
+							ease: 'easeOut',
+						},
+						delay: 1.5,
+					},
+				}}
+				className='fixed bottom-14'
+			>
 				<Button onClick={handleGetStarted}>Kom i gang</Button>
 			</motion.div>
 		</div>

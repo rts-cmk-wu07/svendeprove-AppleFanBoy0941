@@ -22,7 +22,7 @@ export default function DetailLoader() {
 				<motion.div
 					animate={{
 						opacity: [0.25, 0.5, 0.25],
-						transition: { duration: 1, repeat: Infinity },
+						transition: { duration: 1, repeat: Infinity, delay: 0.05 },
 					}}
 					style={{ width: Math.floor(Math.random() * 25) + 50 + '%' }}
 					className='h-9 bg-elevated rounded-xl mb-1'
@@ -30,7 +30,7 @@ export default function DetailLoader() {
 				<motion.div
 					animate={{
 						opacity: [0.25, 0.5, 0.25],
-						transition: { duration: 1, repeat: Infinity },
+						transition: { duration: 1, repeat: Infinity, delay: 0.1 },
 					}}
 					style={{ width: Math.floor(Math.random() * 10) + 25 + '%' }}
 					className='h-[27px] bg-elevated rounded-xl mb-4'
@@ -38,7 +38,7 @@ export default function DetailLoader() {
 				<motion.div
 					animate={{
 						opacity: [0.25, 0.5, 0.25],
-						transition: { duration: 1, repeat: Infinity },
+						transition: { duration: 1, repeat: Infinity, delay: 0.15 },
 					}}
 					style={{ width: Math.floor(Math.random() * 75) + 25 + '%' }}
 					className='h-[27px] bg-elevated rounded-xl'

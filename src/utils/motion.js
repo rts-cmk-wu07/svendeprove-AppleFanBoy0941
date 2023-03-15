@@ -5,7 +5,7 @@ export const animatedList = {
 	animate: {
 		opacity: 1,
 		transition: {
-			delayChildren: 0.2,
+			delayChildren: 2,
 			staggerChildren: 0.5,
 		},
 	},
@@ -17,13 +17,21 @@ export const animatedList = {
 
 export const animatedListItem = {
 	initial: {
-		opacity: 0,
+		opacity: 1,
 		y: 24,
 	},
 	animate: {
 		opacity: 1,
 		y: 0,
 		filter: 'blur(0px)',
+		transition: {
+			type: 'spring',
+			stiffness: 500,
+			damping: 50,
+			duration: 1.5,
+			opacity: { duration: 0.5, delay: 1, ease: 'easeOut' },
+			filter: { duration: 0.5, delay: 1, ease: 'easeOut' },
+		},
 	},
 	exit: {
 		opacity: 0,

@@ -4,8 +4,8 @@ export default function RotatingLoader({ size = 6 }) {
 	function template({ rotate, y, scale }) {
 		return `rotate(${rotate}) translateY(${y}) scale(${scale})`
 	}
-	const array = Array.from({ length: size }, (_, i) => i)
-	console.log(array)
+	const array = Array.from({ length: 6 }, (_, i) => i)
+
 	return (
 		<motion.div className='w-24 h-24 relative flex justify-center items-center'>
 			<motion.div
@@ -37,22 +37,17 @@ export default function RotatingLoader({ size = 6 }) {
 						],
 						opacity: [0, 1, 1, 0],
 						scale: [0.5, 1, 1, 0.5],
-						filter: ['blur(0px)', 'blur(0px)', 'blur(0px)', 'blur(0px)'],
+						filter: ['blur(8px)', 'blur(0px)', 'blur(0px)', 'blur(0px)'],
 					}}
 					transition={{
 						repeat: Infinity,
 						repeatType: 'loop',
 						duration: array.length * 0.1667,
 						// ease: 'easeInOut',
-						type: 'spring',
-						stiffness: 100,
-						damping: 10,
 						delay: i * 0.05,
 						repeatDelay: 0.25,
 					}}
-				>
-					hej
-				</motion.div>
+				/>
 			))}
 		</motion.div>
 	)
