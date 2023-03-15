@@ -3,7 +3,6 @@ import Input from '../components/sub-components/Input'
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { SearchIcon } from 'lucide-react'
-import AnimatedSearchIcon from '../components/animations/AnimatedSearchIcon'
 
 export default function Search() {
 	const [search, setSearch] = useState('')
