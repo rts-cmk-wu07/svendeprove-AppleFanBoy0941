@@ -100,7 +100,10 @@ export default function useAxios(endpoint, noToken, fullUrl = false) {
 					},
 				}
 			)
-			setData(response.data)
+
+			const newData = await getData()
+
+			setData(newData)
 		} catch (err) {
 			setError(err)
 		} finally {
@@ -163,7 +166,10 @@ export default function useAxios(endpoint, noToken, fullUrl = false) {
 					},
 				}
 			)
-			setData(response.data)
+
+			const newData = await getData()
+
+			setData(newData)
 		} catch (err) {
 			setError(err)
 		} finally {
