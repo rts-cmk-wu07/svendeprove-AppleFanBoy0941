@@ -7,10 +7,12 @@ import Input from '../components/sub-components/Input'
 import { useState, useContext } from 'react'
 import axios from 'axios'
 import InlineLoader from '../components/buttons/InlineLoader'
-import { AuthContext } from '../contexts/AuthProvider'
+import { AuthContext, RememberMeContext } from '../contexts/AuthProvider'
+import CheckBox from '../components/sub-components/CheckBox'
 
 export default function SignInUp({ isOpen, setIsOpen }) {
 	const { setAuth } = useContext(AuthContext)
+	const { rememberMe, setRememberMe } = useContext(RememberMeContext)
 
 	const [username, setUsername] = useState('')
 	const [password, setPassword] = useState('')
@@ -96,6 +98,11 @@ export default function SignInUp({ isOpen, setIsOpen }) {
 								value={password}
 								onChange={e => setPassword(e.target.value)}
 								errorMessage={passwordError}
+							/>
+							<CheckBox
+								label='Husk mig'
+								value={rememberMe}
+								setValue={setRememberMe}
 							/>
 							<div className='flex justify-center mt-4'>
 								<Button disabled={loading}>
