@@ -1,6 +1,5 @@
 import { Outlet, useLocation, ScrollRestoration } from 'react-router-dom'
-import { AnimatePresence, motion } from 'framer-motion'
-import { useEffect } from 'react'
+import { motion } from 'framer-motion'
 
 export default function Layout() {
 	const { pathname } = useLocation()
