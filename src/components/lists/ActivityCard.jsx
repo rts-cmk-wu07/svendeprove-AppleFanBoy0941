@@ -11,7 +11,7 @@ export default function ActivityCard({ activity }) {
 	return (
 		<motion.li
 			variants={animatedListItem}
-			onClick={() => navigate(`activity/${activity.id}`)}
+			onClick={() => navigate(`/activity/${activity.id}`)}
 			className='w-full aspect-square relative rounded-t-[39px] rounded-bl-[39px] overflow-hidden'
 		>
 			{!showImage && (
@@ -23,13 +23,13 @@ export default function ActivityCard({ activity }) {
 				onLoad={() => setShowImage(true)}
 				className='aspect-square object-cover'
 				src={activity.asset.url}
-				alt=''
+				alt={activity.name}
 				initial={{ opacity: 0 }}
 				animate={{ opacity: showImage ? 1 : 0 }}
 			/>
 			<div className='absolute bottom-0 left-0 right-0 p-6 bg-primary/80 rounded-tr-[39px]'>
 				<h2 className='text-xl font-bold'>
-					<Link to={`activity/${activity.id}`}>{activity.name}</Link>
+					<Link to={`/activity/${activity.id}`}>{activity.name}</Link>
 				</h2>
 				<p>
 					{activity.minAge} - {activity.maxAge} år
