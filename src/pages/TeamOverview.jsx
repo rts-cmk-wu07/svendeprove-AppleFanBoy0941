@@ -7,6 +7,8 @@ import RotatingLoader from '../components/loaders/RotatingLoader'
 import { motion } from 'framer-motion'
 import { Lock } from 'lucide-react'
 import Button from '../components/buttons/Button'
+import Info from '../components/Info'
+import SiteTitle from '../components/sub-components/SiteTitle'
 
 export default function TeamOverview() {
 	const location = useLocation()
@@ -23,25 +25,35 @@ export default function TeamOverview() {
 
 	return (
 		<div className='px-8 pt-8 pb-20'>
-			<h1 className='text-elevated text-4xl font-semibold mb-8'>
-				{activityName}
-			</h1>
+			<SiteTitle title={activityName} />
 			{role !== 'instructor' && (
-				<div className='flex flex-col items-center text-elevated/50 text-center gap-4 mt-12'>
-					<Lock size={48} className='text-elevated' opacity={0.5} />
-					<h2 className='text-xl'>Du er ikke logget ind som instruktør</h2>
-					<p>
-						Log ind som instruktør for denne aktivitet, eller gå tilbage til
-						hjem
-					</p>
-					<Button type='secondary' onClick={() => setSignInOpen(true)}>
-						Log ind
-					</Button>
-				</div>
+				<Info
+					icon='Lock'
+					title='Du er ikke logget ind som instruktør'
+					body={[
+						'Log ind som inistruktør for denne aktivitet, eller gå tilbage til hjem',
+					]}
+					actions={[
+						{
+							label: 'Log ind',
+							options: {
+								type: 'secondary',
+								onClick: () => setSignInOpen(true),
+							},
+						},
+						{
+							label: 'Gå til hjem',
+							options: {
+								type: 'secondary',
+								to: '/',
+							},
+						},
+					]}
+				/>
 			)}
 			{loading ? (
 				<div className='flex justify-center pt-16'>
-					<RotatingLoader />
+					<RotatingLoader delay={0.5} />
 				</div>
 			) : (
 				<motion.ul

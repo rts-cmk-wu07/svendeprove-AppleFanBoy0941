@@ -67,7 +67,7 @@ export default function DetailsHeader({ activity }) {
 				<AnimatePresence>
 					{!imageLoaded && (
 						<motion.div
-							initial={{ opacity: 0 }}
+							// initial={{ opacity: 0 }}
 							animate={{ opacity: 1 }}
 							exit={{ opacity: 0 }}
 							className='absolute top-0 left-0 w-full h-full bg-elevated/10 flex justify-center items-center'
@@ -95,7 +95,7 @@ export default function DetailsHeader({ activity }) {
 							damping: 50,
 						},
 					}}
-					className='absolute bottom-6 right-6'
+					className='absolute bottom-6 right-6 h-[56px] w-[249px]'
 				>
 					{showButton && (
 						<Button onClick={handleClick} disabled={!canSignUp() || loading}>

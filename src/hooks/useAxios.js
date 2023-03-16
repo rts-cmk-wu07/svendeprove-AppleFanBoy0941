@@ -13,6 +13,7 @@ export default function useAxios(endpoint, noToken, fullUrl = false) {
 	const { token } = auth
 
 	function handleError(error) {
+		console.log(error)
 		setError({ status: error.response.status, error: error.response })
 	}
 

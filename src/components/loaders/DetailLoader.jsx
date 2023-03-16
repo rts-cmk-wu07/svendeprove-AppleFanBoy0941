@@ -2,8 +2,13 @@ import { motion } from 'framer-motion'
 
 export default function DetailLoader() {
 	return (
-		<div className='flex flex-col h-screen'>
+		<motion.div
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1, transition: { delay: 1 } }}
+			className='flex flex-col h-screen'
+		>
 			<motion.div
+				initial={{ opacity: 0 }}
 				animate={{
 					opacity: [0.25, 0.5, 0.25],
 					transition: { duration: 1, repeat: Infinity },
@@ -44,6 +49,6 @@ export default function DetailLoader() {
 					className='h-[27px] bg-elevated rounded-xl'
 				/>
 			</div>
-		</div>
+		</motion.div>
 	)
 }

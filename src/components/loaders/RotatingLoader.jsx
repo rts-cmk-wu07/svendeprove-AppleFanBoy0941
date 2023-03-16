@@ -1,13 +1,17 @@
 import { motion } from 'framer-motion'
 
-export default function RotatingLoader({ size = 6 }) {
+export default function RotatingLoader({ size = 6, delay }) {
 	function template({ rotate, y, scale }) {
 		return `rotate(${rotate}) translateY(${y}) scale(${scale})`
 	}
-	const array = Array.from({ length: 6 }, (_, i) => i)
+	const array = Array.from({ length: size }, (_, i) => i)
 
 	return (
-		<motion.div className='w-24 h-24 relative flex justify-center items-center'>
+		<motion.div
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1, transition: { delay: delay || 0 } }}
+			className='w-24 h-24 relative flex justify-center items-center'
+		>
 			<motion.div
 				className='absolute w-16 h-16 bg-primary blur-2xl'
 				animate={{ scale: [0.75, 1, 0.75], opacity: [0.75, 1, 0.75] }}

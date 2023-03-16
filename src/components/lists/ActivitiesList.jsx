@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { animatedList, animatedListItem } from '../../utils/motion'
 import RotatingLoader from '../loaders/RotatingLoader'
 import { AlertTriangle } from 'lucide-react'
+import Info from '../Info'
 
 export default function ActivitiesList({ filter }) {
 	const { data, loading, error } = useAxios('activities', true)
@@ -71,16 +72,12 @@ export default function ActivitiesList({ filter }) {
 				))}
 			<AnimatePresence mode='popLayout'>
 				{filter && filterClasses()?.length < 1 && (
-					<motion.div
-						initial={{ opacity: 0 }}
-						animate={{ opacity: 1, transition: { delay: 0.25 } }}
-						exit={{ opacity: 0 }}
-						className=' text-elevated/50 flex flex-col items-center gap-2'
-					>
-						<AlertTriangle size={48} className='opacity-50' />
-						<p className='text-xl'>Ingen aktiviteter blev fundet</p>
-						<p className='opacity-50'>Prøv at søge efter noget andet</p>
-					</motion.div>
+					<Info
+						key='alert'
+						icon='AlertTriangle'
+						title='Ingen aktiviteter blev fundet'
+						body={['Prøv at søge efter noget andet']}
+					/>
 				)}
 			</AnimatePresence>
 		</motion.ul>
