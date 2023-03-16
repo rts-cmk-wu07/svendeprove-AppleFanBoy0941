@@ -21,6 +21,7 @@ import AuthProvider from './contexts/AuthProvider'
 import TeamOverview from './pages/TeamOverview'
 import { AnimatePresence, motion } from 'framer-motion'
 import NotFound from './pages/NotFound'
+import SignInProvider from './contexts/SignInProvider'
 
 function App() {
 	const [authCookie] = useCookie('auth')
@@ -68,7 +69,7 @@ function App() {
 					element: <Search />,
 				},
 				{
-					path: '/calendar/team/:id',
+					path: '/calendar/roster/:id',
 					element: <TeamOverview />,
 				},
 				{
@@ -81,7 +82,9 @@ function App() {
 
 	return (
 		<AuthProvider>
-			<RouterProvider router={router} />
+			<SignInProvider>
+				<RouterProvider router={router} />
+			</SignInProvider>
 		</AuthProvider>
 	)
 }

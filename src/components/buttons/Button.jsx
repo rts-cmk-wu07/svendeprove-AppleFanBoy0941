@@ -17,14 +17,11 @@ export default function Button({
 	return (
 		<>
 			{to ? (
-				<Link
-					to={to}
-					whileTap={{ scale: props.disabled ? 1 : 0.95 }}
-					className={className}
-					{...props}
-				>
-					{children}
-				</Link>
+				<motion.div whileTap={{ scale: props.disabled ? 1 : 0.95 }}>
+					<Link to={to} className={className} {...props}>
+						{children}
+					</Link>
+				</motion.div>
 			) : (
 				<motion.button
 					whileTap={{ scale: props.disabled ? 1 : 0.95 }}
