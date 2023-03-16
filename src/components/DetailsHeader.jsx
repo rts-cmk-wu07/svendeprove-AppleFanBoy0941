@@ -9,6 +9,7 @@ import { AuthContext } from '../contexts/AuthProvider'
 import useAxios from '../hooks/useAxios'
 import { SignInContext } from '../contexts/SignInProvider'
 import InlineLoader from './buttons/InlineLoader'
+import { Lock } from 'lucide-react'
 
 export default function DetailsHeader({ activity }) {
 	const { auth } = useContext(AuthContext)
@@ -25,7 +26,6 @@ export default function DetailsHeader({ activity }) {
 		.includes(activity.id)
 
 	function canSignUp() {
-		if (hasSignedUp === undefined) return false
 		if (data === null) return true
 		if (data.role !== 'default') return false
 		if (data.age > activity.maxAge) return false
@@ -59,6 +59,8 @@ export default function DetailsHeader({ activity }) {
 		getData()
 	}
 
+	const showButton = hasSignedUp !== undefined || !data
+
 	return (
 		<>
 			<div className='relative flex-grow flex-shrink-0 h-3/5 shadow-lg shadow-background'>
@@ -78,7 +80,7 @@ export default function DetailsHeader({ activity }) {
 					onLoad={() => setImageLoaded(true)}
 					className='h-full w-full object-cover'
 					src={activity?.asset?.url}
-					alt=''
+					alt={activity.name}
 					initial={{ opacity: 0 }}
 					animate={{ opacity: imageLoaded ? 1 : 0, transition: { delay: 0.1 } }}
 				/>
@@ -95,11 +97,11 @@ export default function DetailsHeader({ activity }) {
 					}}
 					className='absolute bottom-6 right-6'
 				>
-					{canSignUp() && (
-						<Button onClick={handleClick}>
+					{showButton && (
+						<Button onClick={handleClick} disabled={!canSignUp() || loading}>
 							{loading ? (
 								<InlineLoader color='bg-elevated' />
-							) : (
+							) : canSignUp() ? (
 								<motion.p
 									key={hasSignedUp}
 									initial={{ opacity: 0, y: 8 }}
@@ -107,6 +109,11 @@ export default function DetailsHeader({ activity }) {
 								>
 									{hasSignedUp ? 'Forlad' : 'Tilmeld'}
 								</motion.p>
+							) : (
+								<div className='flex items-center gap-2'>
+									<Lock opacity={0.5} />
+									Udenfor aldersgrænse
+								</div>
 							)}
 						</Button>
 					)}

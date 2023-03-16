@@ -12,6 +12,10 @@ export default function useAxios(endpoint, noToken, fullUrl = false) {
 
 	const { token } = auth
 
+	function handleError(error) {
+		setError({ status: error.response.status, error: error.response })
+	}
+
 	useEffect(() => {
 		if (!token && !noToken) {
 			setLoading(false)
@@ -35,8 +39,7 @@ export default function useAxios(endpoint, noToken, fullUrl = false) {
 				)
 				setData(response.data)
 			} catch (err) {
-				setError(err)
-				// TODO: improve error handling, the user should not see the error message from the server
+				handleError(err)
 			} finally {
 				setLoading(false)
 			}
@@ -70,7 +73,7 @@ export default function useAxios(endpoint, noToken, fullUrl = false) {
 			)
 			setData(response.data)
 		} catch (err) {
-			setError(err)
+			handleError(err)
 		} finally {
 			setLoading(false)
 		}
@@ -109,7 +112,7 @@ export default function useAxios(endpoint, noToken, fullUrl = false) {
 
 			setData(newData)
 		} catch (err) {
-			setError(err)
+			handleError(err)
 		}
 
 		return data
@@ -141,7 +144,7 @@ export default function useAxios(endpoint, noToken, fullUrl = false) {
 			)
 			setData(response.data)
 		} catch (err) {
-			setError(err)
+			handleError(err)
 		} finally {
 			setLoading(false)
 		}
@@ -160,7 +163,7 @@ export default function useAxios(endpoint, noToken, fullUrl = false) {
 		refreshToken(setAuth)
 
 		try {
-			const response = await axios.delete(
+			await axios.delete(
 				fullUrl
 					? endpoint + additionalEndpoint
 					: `${import.meta.env.VITE_API_URL}${endpoint}${additionalEndpoint}`,
@@ -175,7 +178,7 @@ export default function useAxios(endpoint, noToken, fullUrl = false) {
 
 			setData(newData)
 		} catch (err) {
-			setError(err)
+			handleError(err)
 		}
 
 		return data
