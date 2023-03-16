@@ -54,6 +54,9 @@ export default function SignInUp({ isOpen, setIsOpen }) {
 		}
 	}
 
+	// E3C8E7
+	// FBF6FC
+
 	return (
 		<AnimatePresence>
 			{isOpen && (
@@ -61,7 +64,7 @@ export default function SignInUp({ isOpen, setIsOpen }) {
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
 					exit={{ opacity: 0 }}
-					className='bg-[#FBF6FC] fixed inset-0'
+					className='bg-gradient-to-b from-[#E3C8E7] via-[#FBF6FC] via-[#FBF6FC] to-[#E3C8E7] fixed inset-0'
 				>
 					<motion.img
 						src={bgImage}
@@ -70,7 +73,7 @@ export default function SignInUp({ isOpen, setIsOpen }) {
 						initial={{ opacity: 0 }}
 						animate={{
 							opacity: 1,
-							transition: { delay: 0.5, duration: 1, ease: 'easeOut' },
+							transition: { delay: 0.25, duration: 1, ease: 'easeOut' },
 						}}
 					/>
 					<div
