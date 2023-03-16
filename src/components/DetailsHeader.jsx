@@ -4,16 +4,16 @@ import { useNavigate } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useState, useContext } from 'react'
 import RotatingLoader from './loaders/RotatingLoader'
-import SignInUp from '../templates/SignInUp'
 import BackButton from './buttons/BackButton'
 import { AuthContext } from '../contexts/AuthProvider'
 import useAxios from '../hooks/useAxios'
+import { SignInContext } from '../contexts/SignInProvider'
 
 export default function DetailsHeader({ activity }) {
 	const { auth } = useContext(AuthContext)
+	const { setSignInOpen } = useContext(SignInContext)
 	const navigate = useNavigate()
 	const [imageLoaded, setImageLoaded] = useState(false)
-	const [showSignInUp, setShowSignInUp] = useState(false)
 
 	const { data, loading, getData, postData, deleteData, error } = useAxios(
 		`users/${auth.userId}`
@@ -41,7 +41,7 @@ export default function DetailsHeader({ activity }) {
 	}
 
 	async function signUpForActivity() {
-		if (!auth.token) return setShowSignInUp(true)
+		if (!auth.token) return setSignInOpen(true)
 		await getData()
 
 		await postData(null, `/activities/${activity.id}`)
@@ -109,7 +109,6 @@ export default function DetailsHeader({ activity }) {
 					<ChevronLeft />
 				</BackButton>
 			</div>
-			<SignInUp isOpen={showSignInUp} setIsOpen={setShowSignInUp} />
 		</>
 	)
 }

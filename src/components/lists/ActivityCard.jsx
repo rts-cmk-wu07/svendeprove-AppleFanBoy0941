@@ -27,12 +27,12 @@ export default function ActivityCard({ activity }) {
 				initial={{ opacity: 0 }}
 				animate={{ opacity: showImage ? 1 : 0 }}
 			/>
-			<div className='absolute bottom-0 left-0 right-0 p-6 bg-primary/80 rounded-tr-[39px]'>
+			<div className='absolute bottom-0 left-0 right-0 p-6 bg-primary/80 rounded-tr-[39px] backdrop-blur'>
 				<h2 className='text-xl font-bold'>
 					<Link to={`/activity/${activity.id}`}>{activity.name}</Link>
 				</h2>
 				<p>
-					{activity.minAge} - {activity.maxAge} år
+					{activity.minAge}-{activity.maxAge} år
 				</p>
 			</div>
 		</motion.li>

@@ -29,7 +29,7 @@ export default function useAxios(endpoint, noToken, fullUrl = false) {
 					fullUrl ? endpoint : `${import.meta.env.VITE_API_URL}${endpoint}`,
 					{
 						headers: {
-							Authorization: !noToken && `Bearer ${token}`,
+							Authorization: `Bearer ${token}`,
 						},
 					}
 				)
