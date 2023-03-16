@@ -8,6 +8,7 @@ import BackButton from './buttons/BackButton'
 import { AuthContext } from '../contexts/AuthProvider'
 import useAxios from '../hooks/useAxios'
 import { SignInContext } from '../contexts/SignInProvider'
+import InlineLoader from './buttons/InlineLoader'
 
 export default function DetailsHeader({ activity }) {
 	const { auth } = useContext(AuthContext)
@@ -24,6 +25,7 @@ export default function DetailsHeader({ activity }) {
 		.includes(activity.id)
 
 	function canSignUp() {
+		if (hasSignedUp === undefined) return false
 		if (data === null) return true
 		if (data.role !== 'default') return false
 		if (data.age > activity.maxAge) return false
@@ -95,13 +97,17 @@ export default function DetailsHeader({ activity }) {
 				>
 					{canSignUp() && (
 						<Button onClick={handleClick}>
-							<motion.p
-								key={hasSignedUp}
-								initial={{ opacity: 0, y: 8 }}
-								animate={{ opacity: 1, y: 0 }}
-							>
-								{hasSignedUp ? 'Forlad' : 'Tilmeld'}
-							</motion.p>
+							{loading ? (
+								<InlineLoader color='bg-elevated' />
+							) : (
+								<motion.p
+									key={hasSignedUp}
+									initial={{ opacity: 0, y: 8 }}
+									animate={{ opacity: 1, y: 0 }}
+								>
+									{hasSignedUp ? 'Forlad' : 'Tilmeld'}
+								</motion.p>
+							)}
 						</Button>
 					)}
 				</motion.div>
