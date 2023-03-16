@@ -29,10 +29,14 @@ export default function CalendarItem({ activity, index }) {
 					},
 				},
 			}}
-			onClick={() => navigate(link)}
+			onClick={() => navigate(link, { state: { activityName: activity.name } })}
 			className='bg-elevated px-6 py-4 rounded-xl'
 		>
-			<h2 className='text-xl font-bold'>{activity.name}</h2>
+			<h2 className='text-xl font-bold'>
+				<Link to={link} state={{ activityName: activity.name }}>
+					{activity.name}
+				</Link>
+			</h2>
 			<p>
 				<span className='capitalize'>{activity.weekday}</span> {activity.time}
 			</p>

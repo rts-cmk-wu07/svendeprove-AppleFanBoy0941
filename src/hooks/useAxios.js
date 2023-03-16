@@ -89,7 +89,7 @@ export default function useAxios(endpoint, noToken, fullUrl = false) {
 		refreshToken(setAuth)
 
 		try {
-			const response = await axios.post(
+			await axios.post(
 				fullUrl
 					? endpoint + additionalEndpoint
 					: `${import.meta.env.VITE_API_URL}${endpoint}${additionalEndpoint}`,
