@@ -53,6 +53,8 @@ export default function useAxios(endpoint, noToken, fullUrl = false) {
 			return
 		}
 
+		setLoading(true)
+
 		refreshToken(setAuth)
 
 		try {
@@ -86,10 +88,12 @@ export default function useAxios(endpoint, noToken, fullUrl = false) {
 			return
 		}
 
+		setLoading(true)
+
 		refreshToken(setAuth)
 
 		try {
-			const response = await axios.post(
+			await axios.post(
 				fullUrl
 					? endpoint + additionalEndpoint
 					: `${import.meta.env.VITE_API_URL}${endpoint}${additionalEndpoint}`,
@@ -106,8 +110,6 @@ export default function useAxios(endpoint, noToken, fullUrl = false) {
 			setData(newData)
 		} catch (err) {
 			setError(err)
-		} finally {
-			setLoading(false)
 		}
 
 		return data
@@ -153,6 +155,8 @@ export default function useAxios(endpoint, noToken, fullUrl = false) {
 			return
 		}
 
+		setLoading(true)
+
 		refreshToken(setAuth)
 
 		try {
@@ -172,8 +176,6 @@ export default function useAxios(endpoint, noToken, fullUrl = false) {
 			setData(newData)
 		} catch (err) {
 			setError(err)
-		} finally {
-			setLoading(false)
 		}
 
 		return data
