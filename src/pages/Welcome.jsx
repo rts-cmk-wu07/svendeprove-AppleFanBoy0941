@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import Button from '../components/buttons/Button'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { useEffectOnce } from 'react-use'
+import { useEffectOnce, useTitle } from 'react-use'
 
 export default function Welcome({ setWelcome }) {
 	const navigate = useNavigate()
@@ -20,6 +20,8 @@ export default function Welcome({ setWelcome }) {
 			}, 0)
 		}
 	})
+
+	useTitle('Velkommen – Landrup Dans')
 
 	return (
 		<div

@@ -3,6 +3,7 @@ import CalendarList from '../components/lists/CalendarList'
 import { useContext } from 'react'
 import { AuthContext } from '../contexts/AuthProvider'
 import { motion } from 'framer-motion'
+import { useTitle } from 'react-use'
 
 export default function Calendar() {
 	const { auth, setAuth } = useContext(AuthContext)
@@ -10,6 +11,8 @@ export default function Calendar() {
 	function signOut() {
 		setAuth({ action: 'delete' })
 	}
+
+	useTitle('Kalender – Landrup Dans')
 
 	return (
 		<div className='px-6 pt-8 pb-20'>

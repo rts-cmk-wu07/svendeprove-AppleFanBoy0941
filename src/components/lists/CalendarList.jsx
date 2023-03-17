@@ -12,19 +12,16 @@ export default function CalendarList() {
 	const { setSignInOpen } = useContext(SignInContext)
 	const { userId, role } = auth
 
-	const { data, loading, error } = useAxios(
+	const { data, loading } = useAxios(
 		role === 'instructor' ? 'activities' : 'users/' + userId
 	)
 
 	function processItems() {
 		if (!data) return []
-		// console.log(data)
 		if (role !== 'instructor') return data.activities
 
-		return data.filter(item => item.instructorId === userId)
+		return data?.filter(item => item.instructorId === userId)
 	}
-
-	// useUnmount(() => alert('unmounted'))
 
 	return (
 		<div>
@@ -52,7 +49,7 @@ export default function CalendarList() {
 						<div className='flex justify-center pt-16'>
 							<RotatingLoader delay={0.5} />
 						</div>
-					) : processItems().length > 0 ? (
+					) : processItems()?.length > 0 ? (
 						<ul className='flex flex-col gap-4'>
 							{processItems().map((item, index) => (
 								<CalendarItem key={item.id} activity={item} index={index} />

@@ -4,9 +4,12 @@ import { useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import Info from '../components/Info'
 import SiteTitle from '../components/sub-components/SiteTitle'
+import { useTitle } from 'react-use'
 
 export default function Search() {
 	const [search, setSearch] = useState('')
+
+	useTitle(`${search ? `"${search}"` : 'Søg'} – Landrup Dans`)
 
 	return (
 		<div className='px-6 pt-8 pb-20 flex flex-col gap-12'>
