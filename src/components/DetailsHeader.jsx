@@ -24,6 +24,14 @@ export default function DetailsHeader({ activity }) {
 		?.map(item => item.id)
 		.includes(activity.id)
 
+	const hasActivityThisDay = data?.activities.find(
+		item => item.weekday === activity.weekday
+	)
+		? true
+		: false
+
+	console.log(hasActivityThisDay)
+
 	const isInstructor =
 		data?.role === 'instructor' && data?.id === activity.instructorId
 
@@ -32,8 +40,10 @@ export default function DetailsHeader({ activity }) {
 
 	function canSignUp() {
 		if (data === null) return true
+		if (hasSignedUp) return true
 		if (!isWithinAge) return false
 		if (isInstructor) return false
+		if (hasActivityThisDay) return false
 
 		return true
 	}
@@ -125,8 +135,10 @@ export default function DetailsHeader({ activity }) {
 									<Lock opacity={0.5} />
 									Udenfor aldersgrænse
 								</div>
+							) : hasActivityThisDay ? (
+								<div>Du har aktivitet {activity.weekday}</div>
 							) : (
-								<div>Bruh</div>
+								<div>Der skete en fejl</div>
 							)}
 						</Button>
 					)}

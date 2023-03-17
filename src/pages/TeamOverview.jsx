@@ -27,7 +27,7 @@ export default function TeamOverview() {
 	useTitle(activityName + ' – Landrup Dans')
 
 	return (
-		<div className='px-8 pt-8 pb-20'>
+		<div className='px-6 pt-8 pb-20'>
 			<SiteTitle title={activityName} />
 			{role !== 'instructor' && (
 				<Info
@@ -68,7 +68,7 @@ export default function TeamOverview() {
 					initial='initial'
 					animate='animate'
 					exit='exit'
-					className='text-elevated/75 flex flex-col gap-4'
+					className='text-elevated/75 flex flex-col gap-4 px-2'
 				>
 					{data?.map(item => (
 						<motion.li
