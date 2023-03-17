@@ -30,8 +30,6 @@ export default function DetailsHeader({ activity }) {
 		? true
 		: false
 
-	console.log(hasActivityThisDay)
-
 	const isInstructor =
 		data?.role === 'instructor' && data?.id === activity.instructorId
 

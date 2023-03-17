@@ -34,22 +34,10 @@ function App() {
 
 	const router = createBrowserRouter([
 		{
-			element: (
-				<AnimatePresence mode='wait'>
-					{showWelcomeScreen() ? (
-						<motion.div
-							initial={{ opacity: 0 }}
-							animate={{ opacity: 1, filter: 'blur(0rem)' }}
-							exit={{ opacity: 0, filter: 'blur(1rem)' }}
-						>
-							<Welcome setWelcome={setShowWelcome} />
-						</motion.div>
-					) : (
-						<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-							<Layout />
-						</motion.div>
-					)}
-				</AnimatePresence>
+			element: showWelcomeScreen() ? (
+				<Welcome setWelcome={setShowWelcome} />
+			) : (
+				<Layout />
 			),
 			children: [
 				{
