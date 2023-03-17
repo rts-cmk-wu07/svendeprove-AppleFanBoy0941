@@ -3,7 +3,7 @@ import { Check } from 'lucide-react'
 
 export default function CheckBox({ label, value, setValue }) {
 	return (
-		<label onClick={() => setValue(!value)} className='flex items-center gap-2'>
+		<label className='flex items-center gap-2'>
 			<input
 				type='checkbox'
 				className='form-checkbox h-5 w-5 text-primary hidden'
@@ -28,7 +28,7 @@ export default function CheckBox({ label, value, setValue }) {
 					)}
 				</AnimatePresence>
 			</motion.div>
-			<label className='text-elevated'>{label}</label>
+			<p className='text-elevated'>{label}</p>
 		</label>
 	)
 }

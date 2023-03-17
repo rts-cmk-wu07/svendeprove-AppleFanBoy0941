@@ -32,8 +32,12 @@ export default function CalendarItem({ activity, index }) {
 			onClick={() => navigate(link, { state: { activityName: activity.name } })}
 			className='bg-elevated px-6 py-4 rounded-xl'
 		>
-			<h2 className='text-xl font-bold'>
-				<Link to={link} state={{ activityName: activity.name }}>
+			<h2 className='text-xl font-bold w-full'>
+				<Link
+					className='block w-full whitespace-nowrap text-ellipsis overflow-hidden'
+					to={link}
+					state={{ activityName: activity.name }}
+				>
 					{activity.name}
 				</Link>
 			</h2>
