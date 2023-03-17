@@ -37,14 +37,14 @@ export default function TeamOverview() {
 						{
 							label: 'Log ind',
 							options: {
-								type: 'secondary',
+								color: 'secondary',
 								onClick: () => setSignInOpen(true),
 							},
 						},
 						{
 							label: 'Gå til hjem',
 							options: {
-								type: 'secondary',
+								color: 'secondary',
 								to: '/',
 							},
 						},

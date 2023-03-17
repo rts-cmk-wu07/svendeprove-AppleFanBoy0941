@@ -49,7 +49,7 @@ export default function ActivityDetails() {
 								actions={[
 									{
 										label: 'Gå til hjem',
-										options: { type: 'secondary', to: '/' },
+										options: { color: 'secondary', to: '/' },
 									},
 								]}
 							/>

@@ -8,7 +8,6 @@ import BackButton from './buttons/BackButton'
 import { AuthContext } from '../contexts/AuthProvider'
 import useAxios from '../hooks/useAxios'
 import { SignInContext } from '../contexts/SignInProvider'
-import InlineLoader from './buttons/InlineLoader'
 import { Lock } from 'lucide-react'
 
 export default function DetailsHeader({ activity }) {
@@ -98,10 +97,12 @@ export default function DetailsHeader({ activity }) {
 					className='absolute bottom-6 right-6 h-[56px] w-[249px]'
 				>
 					{showButton && (
-						<Button onClick={handleClick} disabled={!canSignUp() || loading}>
-							{loading ? (
-								<InlineLoader color='bg-elevated' />
-							) : canSignUp() ? (
+						<Button
+							onClick={handleClick}
+							disabled={!canSignUp() || loading}
+							loading={loading}
+						>
+							{canSignUp() ? (
 								<motion.p
 									key={hasSignedUp}
 									initial={{ opacity: 0, y: 8 }}

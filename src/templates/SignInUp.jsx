@@ -2,60 +2,12 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { X } from 'lucide-react'
 import bgImage from '../assets/images/splash-image.jpg'
 import BackButton from '../components/buttons/BackButton'
-import Button from '../components/buttons/Button'
-import Input from '../components/sub-components/Input'
-import { useState, useContext } from 'react'
-import axios from 'axios'
-import InlineLoader from '../components/buttons/InlineLoader'
-import { AuthContext, RememberMeContext } from '../contexts/AuthProvider'
-import CheckBox from '../components/sub-components/CheckBox'
+import { useState } from 'react'
+import SignIn from './SignIn'
+import SignUp from './SignUp'
 
 export default function SignInUp({ isOpen, setIsOpen }) {
-	const { setAuth } = useContext(AuthContext)
-	const { rememberMe, setRememberMe } = useContext(RememberMeContext)
-
-	const [username, setUsername] = useState('')
-	const [password, setPassword] = useState('')
-
-	const [usernameError, setUsernameError] = useState('')
-	const [passwordError, setPasswordError] = useState('')
-
-	const [loading, setLoading] = useState(false)
-
-	async function handleSignIn(event) {
-		event.preventDefault()
-
-		setUsernameError('')
-		setPasswordError('')
-
-		if (!username) return setUsernameError('Indtast venligst et brugernavn')
-		if (!password) return setPasswordError('Indtast venligst et kodeord')
-
-		setLoading(true)
-
-		try {
-			const response = await axios.post(
-				`${import.meta.env.VITE_AUTH_URL}token`,
-				{
-					username,
-					password,
-				}
-			)
-
-			setAuth(response.data)
-
-			setIsOpen(false)
-
-			setUsername('')
-			setPassword('')
-		} catch (error) {
-			console.log(error)
-
-			setPasswordError('Forkert brugernavn eller adgangskode')
-		} finally {
-			setLoading(false)
-		}
-	}
+	const [activeScreen, setActiveScreen] = useState('signIn')
 
 	return (
 		<AnimatePresence>
@@ -64,7 +16,7 @@ export default function SignInUp({ isOpen, setIsOpen }) {
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
 					exit={{ opacity: 0 }}
-					className='bg-gradient-to-b from-[#E3C8E7] via-[#FBF6FC] via-[#FBF6FC] to-[#E3C8E7] fixed inset-0'
+					className='bg-gradient-to-b from-[#E3C8E7] via-[#FBF6FC] via-[#FBF6FC] to-[#E3C8E7] fixed inset-0 z-50'
 				>
 					<motion.img
 						src={bgImage}
@@ -76,57 +28,60 @@ export default function SignInUp({ isOpen, setIsOpen }) {
 							transition: { delay: 0.25, duration: 1, ease: 'easeOut' },
 						}}
 					/>
-					<div
+					<motion.div
 						className='absolute inset-0 flex flex-col justify-center px-6'
-						style={{
-							background:
+						initial={false}
+						animate={{
+							backgroundImage:
 								'linear-gradient(-30deg, transparent 0% 28%, #5E2E5380 28% 80%, transparent 80% 100%)',
+							backgroundSize: activeScreen === 'signUp' ? '675%' : '100%',
+							backgroundPosition: 'center',
 						}}
 					>
-						<h1 className='text-[48px] text-elevated'>Log ind</h1>
-						<form className='flex flex-col gap-4' onSubmit={handleSignIn}>
-							<Input
-								placeholder='Brugernavn'
-								name='username'
-								autoComplete='given-name'
-								value={username}
-								onChange={e => setUsername(e.target.value)}
-								errorMessage={usernameError}
-							/>
-							<Input
-								placeholder='Adgangskode'
-								type='password'
-								name='password'
-								autoComplete='current-password'
-								value={password}
-								onChange={e => setPassword(e.target.value)}
-								errorMessage={passwordError}
-							/>
-							<CheckBox
-								label='Husk mig'
-								value={rememberMe}
-								setValue={setRememberMe}
-							/>
-							<div className='flex justify-center mt-4'>
-								<Button disabled={loading}>
-									{loading ? <InlineLoader color='bg-primary' /> : 'Log ind'}
-								</Button>
-							</div>
-						</form>
-					</div>
+						{activeScreen === 'signIn' ? (
+							<motion.div
+								key='signIn'
+								initial={{ opacity: 0, y: 64 }}
+								animate={{ opacity: 1, y: 0 }}
+							>
+								<SignIn setIsOpen={setIsOpen} />
+							</motion.div>
+						) : (
+							<motion.div
+								key='signOut'
+								initial={{ opacity: 0, y: 64 }}
+								animate={{ opacity: 1, y: 0 }}
+							>
+								<SignUp setIsOpen={setIsOpen} />
+							</motion.div>
+						)}
+					</motion.div>
 					<BackButton
 						placement='right'
-						onClick={() => {
-							setIsOpen(false)
-							setUsername('')
-							setPassword('')
-							setUsernameError('')
-							setPasswordError('')
-						}}
+						onClick={() => setIsOpen(false)}
 						delay={1.5}
 					>
 						<X />
 					</BackButton>
+					<div className='fixed bottom-6 left-0 right-0 z-[100] flex justify-center'>
+						<motion.button
+							key={activeScreen}
+							initial={{ y: 32, opacity: 0 }}
+							animate={{ y: 0, opacity: 1 }}
+							onClick={() =>
+								setActiveScreen(activeScreen === 'signUp' ? 'signIn' : 'signUp')
+							}
+							className='flex flex-col items-center text-text/50'
+						>
+							{activeScreen === 'signIn'
+								? 'Har ikke en profil endnu?'
+								: 'Har allerede en profil?'}
+
+							<span className='font-bold text-background'>
+								{activeScreen === 'signIn' ? 'Opret profil' : 'Log ind'}
+							</span>
+						</motion.button>
+					</div>
 				</motion.div>
 			)}
 		</AnimatePresence>

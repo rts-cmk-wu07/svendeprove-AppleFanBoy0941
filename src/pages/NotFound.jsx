@@ -111,7 +111,7 @@ export default function NotFound() {
 					},
 				}}
 			>
-				<Button to='/' type='secondary' additionalClass='mt-4'>
+				<Button to='/' color='secondary' additionalClass='mt-4'>
 					Gå til forsiden
 				</Button>
 			</motion.div>

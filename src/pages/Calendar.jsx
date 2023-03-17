@@ -38,7 +38,7 @@ export default function Calendar() {
 					animate='visible'
 					className='flex justify-center mt-12'
 				>
-					<Button onClick={signOut} type='secondary'>
+					<Button onClick={signOut} color='secondary'>
 						Log ud
 					</Button>
 					{/* // TODO: Brugeren skal kunne logge ud */}
