@@ -25,6 +25,15 @@ export default function AuthProvider({ children }) {
 	})
 
 	useEffect(() => {
+		if (auth.action === 'delete') {
+			if (rememberMe) {
+				setAuthCookie(null, { days: -1 })
+			} else {
+				setAuthSession(null)
+			}
+			setRememberMe(false)
+			return
+		}
 		if (Object.keys(auth).length > 0) {
 			if (rememberMe) {
 				setAuthCookie(JSON.stringify(auth), {

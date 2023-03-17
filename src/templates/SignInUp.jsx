@@ -45,6 +45,9 @@ export default function SignInUp({ isOpen, setIsOpen }) {
 			setAuth(response.data)
 
 			setIsOpen(false)
+
+			setUsername('')
+			setPassword('')
 		} catch (error) {
 			console.log(error)
 
@@ -53,9 +56,6 @@ export default function SignInUp({ isOpen, setIsOpen }) {
 			setLoading(false)
 		}
 	}
-
-	// E3C8E7
-	// FBF6FC
 
 	return (
 		<AnimatePresence>
