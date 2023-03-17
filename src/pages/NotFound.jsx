@@ -1,8 +1,10 @@
 import { Construction } from 'lucide-react'
 import Button from '../components/buttons/Button'
 import { motion } from 'framer-motion'
+import { useTitle } from 'react-use'
 
 export default function NotFound() {
+	useTitle('Vi kunne ikke finde siden – Landrup Dans')
 	return (
 		<div className='flex flex-col gap-2 items-center justify-center h-screen text-elevated/50 p-6 text-center'>
 			<Construction className='text-elevated' size={48} opacity={0.5} />
@@ -111,7 +113,7 @@ export default function NotFound() {
 					},
 				}}
 			>
-				<Button to='/' type='secondary' additionalClass='mt-4'>
+				<Button to='/' color='secondary' additionalClass='mt-4'>
 					Gå til forsiden
 				</Button>
 			</motion.div>

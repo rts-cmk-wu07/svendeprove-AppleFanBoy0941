@@ -6,11 +6,14 @@ import DetailLoader from '../components/loaders/DetailLoader'
 import { AnimatePresence, motion } from 'framer-motion'
 import Info from '../components/Info'
 import { InfoIcon } from 'lucide-react'
+import { useTitle } from 'react-use'
 
 export default function ActivityDetails() {
 	const { id } = useParams()
 
 	const { data, loading, error } = useAxios(`activities/${id}`, true)
+
+	useTitle(data?.name + ' – Landrup Dans')
 
 	return (
 		<>
@@ -49,7 +52,7 @@ export default function ActivityDetails() {
 								actions={[
 									{
 										label: 'Gå til hjem',
-										options: { type: 'secondary', to: '/' },
+										options: { color: 'secondary', to: '/' },
 									},
 								]}
 							/>

@@ -1,4 +1,4 @@
-import { ChevronLeft } from 'lucide-react'
+import { ChevronLeft, User } from 'lucide-react'
 import Button from './buttons/Button'
 import { useNavigate } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
@@ -8,7 +8,6 @@ import BackButton from './buttons/BackButton'
 import { AuthContext } from '../contexts/AuthProvider'
 import useAxios from '../hooks/useAxios'
 import { SignInContext } from '../contexts/SignInProvider'
-import InlineLoader from './buttons/InlineLoader'
 import { Lock } from 'lucide-react'
 
 export default function DetailsHeader({ activity }) {
@@ -25,11 +24,16 @@ export default function DetailsHeader({ activity }) {
 		?.map(item => item.id)
 		.includes(activity.id)
 
+	const isInstructor =
+		data?.role === 'instructor' && data?.id === activity.instructorId
+
+	const isWithinAge =
+		data?.age <= activity.maxAge && data?.age >= activity.minAge
+
 	function canSignUp() {
 		if (data === null) return true
-		if (data.role !== 'default') return false
-		if (data.age > activity.maxAge) return false
-		if (data.age < activity.minAge) return false
+		if (!isWithinAge) return false
+		if (isInstructor) return false
 
 		return true
 	}
@@ -98,10 +102,12 @@ export default function DetailsHeader({ activity }) {
 					className='absolute bottom-6 right-6 h-[56px] w-[249px]'
 				>
 					{showButton && (
-						<Button onClick={handleClick} disabled={!canSignUp() || loading}>
-							{loading ? (
-								<InlineLoader color='bg-elevated' />
-							) : canSignUp() ? (
+						<Button
+							onClick={handleClick}
+							disabled={!canSignUp() || loading}
+							loading={loading}
+						>
+							{canSignUp() ? (
 								<motion.p
 									key={hasSignedUp}
 									initial={{ opacity: 0, y: 8 }}
@@ -109,11 +115,18 @@ export default function DetailsHeader({ activity }) {
 								>
 									{hasSignedUp ? 'Forlad' : 'Tilmeld'}
 								</motion.p>
-							) : (
+							) : isInstructor ? (
+								<div className='flex items-center gap-2'>
+									<User opacity={0.5} />
+									Du er instruktør
+								</div>
+							) : !isWithinAge ? (
 								<div className='flex items-center gap-2'>
 									<Lock opacity={0.5} />
 									Udenfor aldersgrænse
 								</div>
+							) : (
+								<div>Bruh</div>
 							)}
 						</Button>
 					)}

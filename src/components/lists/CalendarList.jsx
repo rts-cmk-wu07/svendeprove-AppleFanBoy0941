@@ -5,13 +5,14 @@ import { AuthContext } from '../../contexts/AuthProvider'
 import { SignInContext } from '../../contexts/SignInProvider'
 import RotatingLoader from '../loaders/RotatingLoader'
 import Info from '../Info'
+import { useUnmount } from 'react-use'
 
 export default function CalendarList() {
 	const { auth } = useContext(AuthContext)
 	const { setSignInOpen } = useContext(SignInContext)
 	const { userId, role } = auth
 
-	const { data, loading, error } = useAxios(
+	const { data, loading } = useAxios(
 		role === 'instructor' ? 'activities' : 'users/' + userId
 	)
 
@@ -19,7 +20,7 @@ export default function CalendarList() {
 		if (!data) return []
 		if (role !== 'instructor') return data.activities
 
-		return data.filter(item => item.instructorId === userId)
+		return data?.filter(item => item.instructorId === userId)
 	}
 
 	return (
@@ -36,7 +37,7 @@ export default function CalendarList() {
 						{
 							label: 'Log ind her',
 							options: {
-								type: 'secondary',
+								color: 'secondary',
 								onClick: () => setSignInOpen(true),
 							},
 						},
@@ -48,8 +49,8 @@ export default function CalendarList() {
 						<div className='flex justify-center pt-16'>
 							<RotatingLoader delay={0.5} />
 						</div>
-					) : processItems().length > 0 ? (
-						<ul>
+					) : processItems()?.length > 0 ? (
+						<ul className='flex flex-col gap-4'>
 							{processItems().map((item, index) => (
 								<CalendarItem key={item.id} activity={item} index={index} />
 							))}
@@ -72,7 +73,7 @@ export default function CalendarList() {
 									{
 										label: 'Find et hold',
 										options: {
-											type: 'secondary',
+											color: 'secondary',
 											to: '/',
 										},
 									},

@@ -9,6 +9,7 @@ import { Lock } from 'lucide-react'
 import Button from '../components/buttons/Button'
 import Info from '../components/Info'
 import SiteTitle from '../components/sub-components/SiteTitle'
+import { useTitle } from 'react-use'
 
 export default function TeamOverview() {
 	const location = useLocation()
@@ -22,6 +23,8 @@ export default function TeamOverview() {
 	const { data: activityData } = useAxios(state ? '' : `activities/${id}`, true)
 
 	const activityName = state ? state.activityName : activityData?.name
+
+	useTitle(activityName + ' – Landrup Dans')
 
 	return (
 		<div className='px-8 pt-8 pb-20'>
@@ -37,14 +40,14 @@ export default function TeamOverview() {
 						{
 							label: 'Log ind',
 							options: {
-								type: 'secondary',
+								color: 'secondary',
 								onClick: () => setSignInOpen(true),
 							},
 						},
 						{
 							label: 'Gå til hjem',
 							options: {
-								type: 'secondary',
+								color: 'secondary',
 								to: '/',
 							},
 						},

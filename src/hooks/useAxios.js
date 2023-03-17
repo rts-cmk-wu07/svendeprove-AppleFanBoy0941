@@ -3,7 +3,12 @@ import axios from 'axios'
 import { AuthContext } from '../contexts/AuthProvider'
 import refreshToken from '../utils/refreshToken'
 
-export default function useAxios(endpoint, noToken, fullUrl = false) {
+export default function useAxios(
+	endpoint,
+	noToken,
+	fullUrl = false,
+	noGet = false
+) {
 	const [data, setData] = useState(null)
 	const [loading, setLoading] = useState(true)
 	const [error, setError] = useState('')
@@ -18,6 +23,7 @@ export default function useAxios(endpoint, noToken, fullUrl = false) {
 	}
 
 	useEffect(() => {
+		if (noGet) return setLoading(false)
 		if (!token && !noToken) {
 			setLoading(false)
 			return
@@ -97,7 +103,7 @@ export default function useAxios(endpoint, noToken, fullUrl = false) {
 		refreshToken(setAuth)
 
 		try {
-			await axios.post(
+			const response = await axios.post(
 				fullUrl
 					? endpoint + additionalEndpoint
 					: `${import.meta.env.VITE_API_URL}${endpoint}${additionalEndpoint}`,
@@ -109,11 +115,17 @@ export default function useAxios(endpoint, noToken, fullUrl = false) {
 				}
 			)
 
+			if (noGet) {
+				setData(response.data)
+				setLoading(true)
+				return
+			}
 			const newData = await getData()
 
 			setData(newData)
 		} catch (err) {
 			handleError(err)
+			setLoading(false)
 		}
 
 		return data

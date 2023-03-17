@@ -42,7 +42,7 @@ export default function Info({ icon, title, body, actions, extraPadding }) {
 
 	return (
 		<motion.div
-			key={body.length}
+			key={body?.length || 1}
 			variants={containerVariants}
 			initial='initial'
 			animate='animate'
@@ -55,18 +55,20 @@ export default function Info({ icon, title, body, actions, extraPadding }) {
 				{title && title}
 			</motion.h2>
 			<motion.div className='flex flex-col gap-2 opacity-50'>
-				{body?.map((paragraph, index) => (
-					<motion.p variants={itemVariants} key={index}>
-						{paragraph}
-					</motion.p>
-				))}
+				{body &&
+					body?.map((paragraph, index) => (
+						<motion.p variants={itemVariants} key={index}>
+							{paragraph}
+						</motion.p>
+					))}
 			</motion.div>
 			<motion.div className='flex flex-col gap-4 mt-4'>
-				{actions?.map((action, index) => (
-					<motion.div key={index} variants={itemVariants}>
-						<Button {...action.options}>{action.label}</Button>
-					</motion.div>
-				))}
+				{actions &&
+					actions?.map((action, index) => (
+						<motion.div key={index} variants={itemVariants}>
+							<Button {...action.options}>{action.label}</Button>
+						</motion.div>
+					))}
 			</motion.div>
 		</motion.div>
 	)

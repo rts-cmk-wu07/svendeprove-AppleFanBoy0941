@@ -1,16 +1,18 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import InlineLoader from './InlineLoader'
 
 export default function Button({
 	children,
 	action,
 	to,
-	type,
+	color,
 	additionalClass,
+	loading,
 	...props
 }) {
 	const className = `${
-		type === 'secondary'
+		color === 'secondary'
 			? 'bg-elevated text-background'
 			: 'bg-background text-elevated'
 	} h-[54px] w-[249px] rounded-xl shadow-[3px_4px_4px_#00000040] flex items-center justify-center ${additionalClass}`
@@ -28,7 +30,13 @@ export default function Button({
 					className={className}
 					{...props}
 				>
-					{children}
+					{loading ? (
+						<InlineLoader
+							color={color === 'secondary' ? 'bg-text' : 'bg-primary'}
+						/>
+					) : (
+						children
+					)}
 				</motion.button>
 			)}
 		</>
