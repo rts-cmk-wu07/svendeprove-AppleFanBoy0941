@@ -56,7 +56,7 @@ export default function SignIn({ setIsOpen }) {
 				<Input
 					placeholder='Brugernavn'
 					name='username'
-					autoComplete='given-name'
+					autoComplete='username'
 					value={username}
 					onChange={e => setUsername(e.target.value)}
 					errorMessage={usernameError}

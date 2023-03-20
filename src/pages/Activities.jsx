@@ -1,14 +1,13 @@
 import { useTitle } from 'react-use'
 import ActivitiesList from '../components/lists/ActivitiesList'
+import SiteTitle from '../components/sub-components/SiteTitle'
 
 export default function Activities() {
 	useTitle('Aktiviteter – Landrup Dans')
 
 	return (
 		<div className='px-6 pt-8 pb-20'>
-			<h1 className='text-elevated text-4xl font-semibold px-2 mb-8'>
-				Aktiviteter
-			</h1>
+			<SiteTitle title='Aktiviteter' />
 			<ActivitiesList />
 		</div>
 	)

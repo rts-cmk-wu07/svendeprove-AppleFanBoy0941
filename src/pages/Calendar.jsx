@@ -4,6 +4,7 @@ import { useContext } from 'react'
 import { AuthContext } from '../contexts/AuthProvider'
 import { motion } from 'framer-motion'
 import { useTitle } from 'react-use'
+import SiteTitle from '../components/sub-components/SiteTitle'
 
 export default function Calendar() {
 	const { auth, setAuth } = useContext(AuthContext)
@@ -16,9 +17,7 @@ export default function Calendar() {
 
 	return (
 		<div className='px-6 pt-8 pb-20'>
-			<h1 className='text-elevated text-4xl font-semibold px-2 mb-8'>
-				Kalender
-			</h1>
+			<SiteTitle title='Kalender' />
 			<CalendarList />
 
 			{auth.userId && (

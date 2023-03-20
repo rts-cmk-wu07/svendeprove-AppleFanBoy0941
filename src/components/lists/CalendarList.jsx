@@ -19,6 +19,7 @@ export default function CalendarList() {
 	function processItems() {
 		if (!data) return []
 		if (role !== 'instructor') return data.activities
+		if (data.activities) return []
 
 		return data?.filter(item => item.instructorId === userId)
 	}
