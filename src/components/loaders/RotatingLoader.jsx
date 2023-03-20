@@ -47,7 +47,6 @@ export default function RotatingLoader({ size = 6, delay }) {
 						repeat: Infinity,
 						repeatType: 'loop',
 						duration: array.length * 0.1667,
-						// ease: 'easeInOut',
 						delay: i * 0.05,
 						repeatDelay: 0.25,
 					}}

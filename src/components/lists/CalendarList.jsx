@@ -5,7 +5,6 @@ import { AuthContext } from '../../contexts/AuthProvider'
 import { SignInContext } from '../../contexts/SignInProvider'
 import RotatingLoader from '../loaders/RotatingLoader'
 import Info from '../Info'
-import { useUnmount } from 'react-use'
 
 export default function CalendarList() {
 	const { auth } = useContext(AuthContext)

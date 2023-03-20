@@ -1,9 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { Search } from 'lucide-react'
-import { useState } from 'react'
 
 export default function Input({ search, errorMessage, ...props }) {
-	const [focus, setFocus] = useState(false)
 	return (
 		<label className='flex flex-col'>
 			<div

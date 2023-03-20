@@ -18,7 +18,7 @@ export default function Button({
 			: 'bg-background text-elevated'
 	} h-[54px] ${
 		fullWidth ? 'w-full' : 'w-[249px]'
-	} rounded-xl shadow-[3px_4px_4px_#00000040] flex items-center justify-center ${additionalClass}`
+	} rounded-xl shadow-[3px_4px_4px_#00000040] flex items-center justify-center inactive-child ${additionalClass}`
 	return (
 		<>
 			{to ? (

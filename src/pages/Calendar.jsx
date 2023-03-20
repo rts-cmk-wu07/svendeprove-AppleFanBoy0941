@@ -7,13 +7,13 @@ import { useTitle } from 'react-use'
 import SiteTitle from '../components/sub-components/SiteTitle'
 
 export default function Calendar() {
+	useTitle('Kalender – Landrup Dans')
+
 	const { auth, setAuth } = useContext(AuthContext)
 
 	function signOut() {
 		setAuth({ action: 'delete' })
 	}
-
-	useTitle('Kalender – Landrup Dans')
 
 	return (
 		<div className='px-6 pt-8 pb-20'>

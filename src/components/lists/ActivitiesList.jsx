@@ -3,7 +3,6 @@ import ActivityCard from './ActivityCard'
 import { AnimatePresence, motion } from 'framer-motion'
 import { animatedList, animatedListItem } from '../../utils/motion'
 import RotatingLoader from '../loaders/RotatingLoader'
-import { AlertTriangle } from 'lucide-react'
 import Info from '../Info'
 
 export default function ActivitiesList({ filter }) {

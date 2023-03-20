@@ -14,7 +14,6 @@ export default function Search() {
 	return (
 		<div className='px-6 pt-8 pb-20 flex flex-col gap-12'>
 			<header>
-				{/* <h1 className='text-elevated text-4xl font-semibold px-2 mb-4'>Søg</h1> */}
 				<SiteTitle title='Søg' />
 				<Input
 					search
