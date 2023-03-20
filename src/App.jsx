@@ -1,26 +1,23 @@
-import {
-	createBrowserRouter,
-	RouterProvider,
-	ScrollRestoration,
-} from 'react-router-dom'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import useCookie from 'react-use-cookie'
 import useSessionStorage from './hooks/useSessionStorage'
+import React, { Suspense } from 'react'
+import RotatingLoader from './components/loaders/RotatingLoader'
 
 // Import Layout component
 import Layout from './Layout'
 
 // Import Pages
-import Welcome from './pages/Welcome'
-import Activities from './pages/Activities'
-import ActivityDetails from './pages/ActivityDetails'
-import Calendar from './pages/Calendar'
-import Search from './pages/Search'
+const Welcome = React.lazy(() => import('./pages/Welcome'))
+const Activities = React.lazy(() => import('./pages/Activities'))
+const ActivityDetails = React.lazy(() => import('./pages/ActivityDetails'))
+const Calendar = React.lazy(() => import('./pages/Calendar'))
+const Search = React.lazy(() => import('./pages/Search'))
+const TeamOverview = React.lazy(() => import('./pages/TeamOverview'))
+const NotFound = React.lazy(() => import('./pages/NotFound'))
 
 // Import Contexts
 import AuthProvider from './contexts/AuthProvider'
-import TeamOverview from './pages/TeamOverview'
-import { AnimatePresence, motion } from 'framer-motion'
-import NotFound from './pages/NotFound'
 import SignInProvider from './contexts/SignInProvider'
 
 function App() {
@@ -71,7 +68,15 @@ function App() {
 	return (
 		<AuthProvider>
 			<SignInProvider>
-				<RouterProvider router={router} />
+				<Suspense
+					fallback={
+						<div className='flex justify-center pt-16'>
+							<RotatingLoader />
+						</div>
+					}
+				>
+					<RouterProvider router={router} />
+				</Suspense>
 			</SignInProvider>
 		</AuthProvider>
 	)

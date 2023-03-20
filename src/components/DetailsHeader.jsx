@@ -38,12 +38,15 @@ export default function DetailsHeader({ activity }) {
 	const isWithinAge =
 		data?.age <= activity.maxAge && data?.age >= activity.minAge
 
+	const activityIsFull = activity?.users.length >= activity?.maxParticipants
+
 	function canSignUp() {
 		if (data === null) return true
 		if (hasSignedUp) return true
 		if (!isWithinAge) return false
 		if (isInstructor) return false
 		if (hasActivityThisDay) return false
+		if (activityIsFull) return false
 
 		return true
 	}
@@ -155,6 +158,11 @@ export default function DetailsHeader({ activity }) {
 								</div>
 							) : hasActivityThisDay ? (
 								<div>Du har aktivitet {activity.weekday}</div>
+							) : activityIsFull ? (
+								<div className='flex items-center gap-2'>
+									<Lock opacity={0.5} />
+									Aktivitet fuld
+								</div>
 							) : (
 								<div>Der skete en fejl</div>
 							)}
