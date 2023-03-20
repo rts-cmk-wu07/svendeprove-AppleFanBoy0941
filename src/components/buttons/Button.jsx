@@ -9,13 +9,16 @@ export default function Button({
 	color,
 	additionalClass,
 	loading,
+	fullWidth,
 	...props
 }) {
 	const className = `${
 		color === 'secondary'
 			? 'bg-elevated text-background'
 			: 'bg-background text-elevated'
-	} h-[54px] w-[249px] rounded-xl shadow-[3px_4px_4px_#00000040] flex items-center justify-center ${additionalClass}`
+	} h-[54px] ${
+		fullWidth ? 'w-full' : 'w-[249px]'
+	} rounded-xl shadow-[3px_4px_4px_#00000040] flex items-center justify-center ${additionalClass}`
 	return (
 		<>
 			{to ? (

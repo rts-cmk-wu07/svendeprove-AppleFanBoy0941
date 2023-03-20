@@ -16,7 +16,7 @@ export default function SignInUp({ isOpen, setIsOpen }) {
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
 					exit={{ opacity: 0 }}
-					className='bg-gradient-to-b from-[#E3C8E7] via-[#FBF6FC] via-[#FBF6FC] to-[#E3C8E7] fixed inset-0 z-50'
+					className='bg-gradient-to-b from-[#E3C8E7] via-[#FBF6FC] to-[#E3C8E7] fixed inset-0 z-50'
 				>
 					<motion.img
 						src={bgImage}
