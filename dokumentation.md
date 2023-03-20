@@ -95,6 +95,10 @@ Selvom react-use har en `useCookie`-hook, har jeg dog valgt at bruge **`react-us
 - Jeg har tilføjet en "Opret profil" mulighed for at tillade nye brugere. Jeg tænker det giver mening at en bruger har mulighed for at oprette en profil hvis de ikke allerede har en.
 - Jeg har tilføjet små detaljer som en 404-side, info-beskeder hvis der er tomme sider (fx hvis man ikke har søgt på noget endnu på Søg-siden)
 
+## Animationer
+
+Jeg har brugt animationer mange steder i appen for at understøtte designet og for at skabe fokus om det vigtigste. Jeg har brugt animationer for at give brugeren feedback, fx når de klikker på knapper eller lign. Jeg har generelt haft som mål at holde animationerne naturlige, så ikke de virker overvældende for brugeren og tager for meget fokus.
+
 # Arbejdsgang
 
 Jeg har arbejdet hårdt hele ugen og har været fuldt fokuseret på opgaven. Første dag brugte jeg meget tid på at opsætte min [projektstyring](https://github.com/orgs/rts-cmk-wu07/projects/19/views/1) og det har hjulpet mig med at prioritere senere på ugen.  

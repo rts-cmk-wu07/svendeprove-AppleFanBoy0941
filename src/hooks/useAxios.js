@@ -12,7 +12,7 @@ export default function useAxios(
 	const [loading, setLoading] = useState(true)
 	const [error, setError] = useState('')
 
-	const { auth, setAuth } = useContext(AuthContext)
+	const { auth } = useContext(AuthContext)
 
 	const { token } = auth
 
