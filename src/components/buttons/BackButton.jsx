@@ -3,7 +3,10 @@ import { motion } from 'framer-motion'
 export default function BackButton({
 	children,
 	placement = 'left',
+	floating = true,
 	delay,
+	color,
+	additionalClass,
 	...props
 }) {
 	return (
@@ -20,9 +23,13 @@ export default function BackButton({
 				},
 			}}
 			whileTap={{ scale: 0.95 }}
-			className={`absolute top-6 ${
-				placement === 'left' ? 'left-6' : 'right-6'
-			} rounded-full h-[54px] aspect-square flex justify-center items-center bg-background text-elevated shadow-[3px_4px_4px_#00000040]`}
+			className={`${floating ? 'absolute top-6' : 'static'} ${
+				placement === 'left' && floating ? 'left-6' : 'right-6'
+			} rounded-full h-[54px] aspect-square flex justify-center items-center ${
+				color === 'secondary'
+					? 'bg-elevated text-background'
+					: 'bg-background text-elevated'
+			} shadow-[3px_4px_4px_#00000040] ${additionalClass}`}
 			{...props}
 		>
 			{children}

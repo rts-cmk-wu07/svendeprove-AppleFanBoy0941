@@ -1,24 +1,25 @@
 import useAxios from '../hooks/useAxios'
-import { useParams, useLocation } from 'react-router-dom'
+import { useParams, useLocation, useNavigate } from 'react-router-dom'
 import { useContext } from 'react'
 import { AuthContext } from '../contexts/AuthProvider'
 import { SignInContext } from '../contexts/SignInProvider'
 import RotatingLoader from '../components/loaders/RotatingLoader'
 import { motion } from 'framer-motion'
-import { Lock } from 'lucide-react'
-import Button from '../components/buttons/Button'
+import { ChevronLeft } from 'lucide-react'
 import Info from '../components/Info'
 import SiteTitle from '../components/sub-components/SiteTitle'
 import { useTitle } from 'react-use'
+import BackButton from '../components/buttons/BackButton'
 
 export default function TeamOverview() {
 	const location = useLocation()
+	const navigate = useNavigate()
 	const { state } = location
 	const { id } = useParams()
 	const { auth } = useContext(AuthContext)
 	const { setSignInOpen } = useContext(SignInContext)
 	const { userId, role } = auth
-	const { data, loading, error } = useAxios(`users/${userId}/roster/${id}`)
+	const { data, loading } = useAxios(`users/${userId}/roster/${id}`)
 
 	const { data: activityData } = useAxios(state ? '' : `activities/${id}`, true)
 
@@ -28,6 +29,14 @@ export default function TeamOverview() {
 
 	return (
 		<div className='px-6 pt-8 pb-20'>
+			<BackButton
+				floating={false}
+				additionalClass='mb-4'
+				color='secondary'
+				onClick={() => navigate(-1)}
+			>
+				<ChevronLeft />
+			</BackButton>
 			<SiteTitle title={activityName} />
 			{role !== 'instructor' && (
 				<Info
