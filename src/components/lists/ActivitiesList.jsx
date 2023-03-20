@@ -25,11 +25,11 @@ export default function ActivitiesList({ filter }) {
 			let score = 0
 			Object.keys(importance).forEach(key => {
 				if (key === 'time') {
-					if (item.time.includes(filter)) {
-						score += importance[key]
-					} else if (item.time.replace(':', '.').includes(filter)) {
-						score += importance[key]
-					} else if (item.time.replace(':', '').includes(filter)) {
+					if (
+						item.time.includes(filter) ||
+						item.time.replace(':', '.').includes(filter) ||
+						item.time.replace(':', '').includes(filter)
+					) {
 						score += importance[key]
 					}
 				} else if (key === 'age') {
