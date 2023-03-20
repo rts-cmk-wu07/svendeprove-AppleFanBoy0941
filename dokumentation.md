@@ -94,6 +94,7 @@ Selvom react-use har en `useCookie`-hook, har jeg dog valgt at bruge **`react-us
 - Hvis en bruger ikke er logget ind og går ind på kalender-visningen, vil de blive mindet om at de skal være logget ind for at kunne se deres kalender. Derudover har jeg tilføjet en log ind knap så brugeren nemt kan logge ind. Der er ikke nogen log ind-knap i designet, så derfor har jeg tilføjet knappen.
 - Jeg har tilføjet en "Opret profil" mulighed for at tillade nye brugere. Jeg tænker det giver mening at en bruger har mulighed for at oprette en profil hvis de ikke allerede har en.
 - Jeg har tilføjet små detaljer som en 404-side, info-beskeder hvis der er tomme sider (fx hvis man ikke har søgt på noget endnu på Søg-siden)
+- Jeg har tilføjet en "Tilbage"-knap til aktivitets-detaljer-siden og på holdoversigt-siden, så brugeren nemt kan gå tilbage til den side de kom fra.
 
 ## Animationer
 
