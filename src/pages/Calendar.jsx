@@ -43,7 +43,6 @@ export default function Calendar() {
 					<Button onClick={signOut} color='secondary'>
 						Log ud
 					</Button>
-					{/* // TODO: Brugeren skal kunne logge ud */}
 				</motion.div>
 			)}
 		</div>

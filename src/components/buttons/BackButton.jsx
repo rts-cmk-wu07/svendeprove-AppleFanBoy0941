@@ -29,7 +29,7 @@ export default function BackButton({
 				color === 'secondary'
 					? 'bg-elevated text-background'
 					: 'bg-background text-elevated'
-			} shadow-[3px_4px_4px_#00000040] ${additionalClass}`}
+			} shadow-[3px_4px_4px_#00000040] inactive-child ${additionalClass}`}
 			{...props}
 		>
 			{children}
