@@ -9,12 +9,14 @@ import { AuthContext } from '../contexts/AuthProvider'
 import useAxios from '../hooks/useAxios'
 import { SignInContext } from '../contexts/SignInProvider'
 import { Lock } from 'lucide-react'
+import PopUp from './PopUp'
 
 export default function DetailsHeader({ activity }) {
 	const { auth } = useContext(AuthContext)
 	const { setSignInOpen } = useContext(SignInContext)
 	const navigate = useNavigate()
 	const [imageLoaded, setImageLoaded] = useState(false)
+	const [popUpOpen, setPopUpOpen] = useState(false)
 
 	const { data, loading, getData, postData, deleteData, error } = useAxios(
 		`users/${auth.userId}`
@@ -51,6 +53,24 @@ export default function DetailsHeader({ activity }) {
 			removeActivityFromUser()
 			return
 		}
+
+		const date = new Date()
+		const weekday = date.getDay()
+		const weekdays = [
+			'søndag',
+			'mandag',
+			'tirsdag',
+			'onsdag',
+			'torsdag',
+			'fredag',
+			'lørdag',
+		]
+
+		if (weekdays[weekday] === activity.weekday) {
+			setPopUpOpen(true)
+			return
+		}
+
 		await signUpForActivity()
 	}
 
@@ -144,6 +164,15 @@ export default function DetailsHeader({ activity }) {
 				<BackButton placement='left' onClick={() => navigate(-1)}>
 					<ChevronLeft />
 				</BackButton>
+				<PopUp
+					title='Du er tilmeldt fra næste uge'
+					text='Du kan desværre ikke tilmelde dig fra i dag, men du vil være tilmeldt fra næste uge'
+					isOpen={popUpOpen}
+					setIsOpen={setPopUpOpen}
+					action={signUpForActivity}
+					actionLabel='OK'
+					cancelLabel='Anuller'
+				/>
 			</div>
 		</>
 	)

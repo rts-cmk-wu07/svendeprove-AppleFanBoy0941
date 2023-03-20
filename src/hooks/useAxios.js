@@ -1,7 +1,6 @@
 import { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
 import { AuthContext } from '../contexts/AuthProvider'
-import refreshToken from '../utils/refreshToken'
 
 export default function useAxios(
 	endpoint,
@@ -33,7 +32,6 @@ export default function useAxios(
 			return
 		}
 
-		refreshToken(setAuth)
 		;(async function () {
 			try {
 				const response = await axios.get(
@@ -64,8 +62,6 @@ export default function useAxios(
 		}
 
 		setLoading(true)
-
-		refreshToken(setAuth)
 
 		try {
 			const response = await axios.get(
@@ -99,8 +95,6 @@ export default function useAxios(
 		}
 
 		setLoading(true)
-
-		refreshToken(setAuth)
 
 		try {
 			const response = await axios.post(
@@ -141,8 +135,6 @@ export default function useAxios(
 			return
 		}
 
-		refreshToken(setAuth)
-
 		try {
 			const response = await axios.patch(
 				fullUrl
@@ -172,8 +164,6 @@ export default function useAxios(
 		}
 
 		setLoading(true)
-
-		refreshToken(setAuth)
 
 		try {
 			await axios.delete(
