@@ -97,7 +97,7 @@ Selvom react-use har en `useCookie`-hook, har jeg dog valgt at bruge **`react-us
 
 # Arbejdsgang
 
-Jeg har arbejdet hårdt hele ugen og har været fuldt fokuseret på opgaven. Første dag brugte jeg meget tid på at opsætte min projektstyring og det har hjulpet mig med at prioritere senere på ugen.  
+Jeg har arbejdet hårdt hele ugen og har været fuldt fokuseret på opgaven. Første dag brugte jeg meget tid på at opsætte min [projektstyring](https://github.com/orgs/rts-cmk-wu07/projects/19/views/1) og det har hjulpet mig med at prioritere senere på ugen.  
 Jeg prøvede at prioritere min tid, så jeg fulgte en brugers flow i appen. Derfor startede jeg fx med at lave en velkomst-side, bagefter gik jeg til aktivitetssiden osv.
 
 # Fremtidens Landrup Dans
